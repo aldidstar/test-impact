@@ -3,10 +3,10 @@ const axios = require("axios");
 
 module.exports = {
   async fetchApiQuotes(req, res) {
-    let fav = [true, false];
+    let favo = [true, false];
     let obj = {
       quote: "",
-      favorites: fav[Math.round(Math.random())],
+      favorites: favo[Math.round(Math.random())],
     };
     let data = await axios({
       method: "GET",
