@@ -2,7 +2,7 @@ var models = require("../models/index");
 const axios = require("axios");
 
 module.exports = {
-  async getApiQuotes(req, res) {
+  async fetchApiQuotes(req, res) {
     let fav = [true, false];
     let obj = {
       quote: "",
@@ -19,7 +19,7 @@ module.exports = {
         await models.Quote.create(obj);
         res.status(201).json(obj);
       } catch (err) {
-        res.status(409).json(err.errors[0].message);
+        res.status(500).json(err);
       }
     }
   },
@@ -57,16 +57,16 @@ module.exports = {
         id,
       },
     });
-    let newData = {
+    let updateData = {
       favorites: req.body.favorites,
     };
     try {
       if (checkId) {
-        await models.Quote.update(newData, { where: { id } });
-        res.status(201).json({ messsage: "data updated" });
+        await models.Quote.update(updateData, { where: { id } });
+        res.status(201).json({ messsage: "data has been updated" });
       } else {
         res.status(404).json({
-          message: "data can't be updated / not found",
+          message: "data  not found",
         });
       }
     } catch (error) {

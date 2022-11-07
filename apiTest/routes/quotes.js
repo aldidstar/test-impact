@@ -3,7 +3,7 @@ const router = express.Router();
 const helpers = require("../helpers/util");
 const quotes = require("../controllers/quotes");
 
-router.get("/api", helpers.verifyToken, quotes.getApiQuotes);
+router.get("/api", helpers.verifyToken, quotes.fetchApiQuotes);
 
 router.get("/", helpers.verifyToken, quotes.getAllQuotes);
 
